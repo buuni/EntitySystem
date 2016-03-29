@@ -1,0 +1,36 @@
+{
+  "name": "vendor_name/package_name",
+  "description": "description_text",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+	{
+	  "name": "author's name",
+	  "email": "email@example.com"
+	}
+  ],
+  "require": {
+    "slim/slim-skeleton": "3.0.1",
+    "slim/logger": "0.1.0",
+    "slim/pdo": "1.9.8",
+    "slim/middleware": "1.0.0",
+    "slim/mvc": "dev-master",
+    "twbs/bootstrap": "v4.0.0-alpha.2",
+    "components/jquery": "2.2.1"
+  },
+  "repositories": [
+	{
+	  "type": "package",
+	  "package": {
+		"name": "jquery/jquery",
+		"version": "1.7.2",
+		"dist": {
+		  "url": "http://code.jquery.com/jquery-1.7.2.js",
+		  "type": "file"
+		}
+	  }
+	}
+  ]
+
+
+}
