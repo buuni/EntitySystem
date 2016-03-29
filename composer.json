@@ -16,21 +16,8 @@
     "slim/middleware": "1.0.0",
     "slim/mvc": "dev-master",
     "twbs/bootstrap": "v4.0.0-alpha.2",
-    "components/jquery": "2.2.1"
-  },
-  "repositories": [
-	{
-	  "type": "package",
-	  "package": {
-		"name": "jquery/jquery",
-		"version": "1.7.2",
-		"dist": {
-		  "url": "http://code.jquery.com/jquery-1.7.2.js",
-		  "type": "file"
-		}
-	  }
-	}
-  ]
-
-
+    "components/jquery": "2.2.1",
+    "components/jquery-cookie": "1.4.1.2",
+    "slim/csrf": "0.6.0"
+  }
 }

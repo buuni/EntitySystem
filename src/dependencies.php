@@ -12,17 +12,31 @@ $container['renderer'] = function ($c) {
 // Monolog
 $container['logger'] = function ($c) {
 	$settings = $c->get('settings')['logger'];
-	$logger = null;
 
-	if (!empty($settings)) {
-		foreach($settings as $loggerName => $handlers) {
-			$logger = new Monolog\Logger($settings['name']);
-			foreach ($handlers as $handler) {
-				$logger->pushProcessor(new Monolog\Processor\UidProcessor());
-				$logger->pushHandler(new Monolog\Handler\StreamHandler($handler['path'], $handler['level']));
-			}
-		}
-	}
+	$logger = new Monolog\Logger($settings['name']);
+	$logger->pushProcessor(new Monolog\Processor\UidProcessor());
+	$logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], Monolog\Logger::DEBUG));
 
 	return $logger;
+};
+
+// PDO драйвер
+$container['connect'] = function($c) {
+	$settings = $c->get('settings')['db'];
+
+	$dsn = 'mysql:host=' . $settings['host'] . ';dbname=' . $settings['dbname'] . ';charset=' . $settings['charset'];
+
+	try {
+		$connect = new Slim\PDO\Database($dsn, $settings['user'], $settings['password']);
+
+	} catch (\PDOException $e) {
+		if($c->get('settings')['displayErrorDetails'] === true) {
+			$c->logger->debug('error connect');
+		}
+
+		$c->logger->error('error connect');
+		echo 'Connect error';
+	}
+
+	return $connect;
 };
