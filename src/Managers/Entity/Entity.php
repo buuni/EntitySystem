@@ -9,6 +9,7 @@ use Interop\Container\ContainerInterface;
 
 class Entity
 {
+    protected $di;
 
     public function __construct($container = [])
     {
@@ -20,7 +21,10 @@ class Entity
             throw new \InvalidArgumentException('Expected a ContainerInterface');
         }
 
-        $this->container = $container;
+        $this->di = $container;
+
+        // Заполняем коллекции с таблицами и столбцами.
+        $this->defaultFillCollections();
     }
 
     public function createTable($tableName, $fields)
@@ -31,5 +35,23 @@ class Entity
 
 
         $sql = '';
+    }
+
+    protected function defaultFillCollections()
+    {
+        $connect = $this->di->get('connect');
+        /** @var Collection $tables */
+        $tables = $this->di->get('tables');
+
+        $tablesInDB = $connect->query("SHOW TABLES");
+
+        foreach ($tablesInDB as $table) {
+            foreach ($table as $name) {
+                $tables[] = new Table($name);
+            }
+        }
+
+        var_dump($tables);
+        die;
     }
 }

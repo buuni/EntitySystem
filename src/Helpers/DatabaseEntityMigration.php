@@ -46,8 +46,10 @@ class DatabaseEntityMigration implements DatabaseInterface
         $this->driver->delete($table);
     }
 
-    public function query($sql = null)
+    public function query($sql = null, $context = [])
     {
-        $this->driver->query($sql);
+        $a = $this->driver->prepare($sql);
+        $a->execute($context);
+        return $a->fetchAll();
     }
 }

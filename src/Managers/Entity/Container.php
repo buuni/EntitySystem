@@ -52,6 +52,7 @@ class Container extends PimpleContainer implements ContainerInterface
             return new Collection(array_merge($defaultSettings, $userSettings));
         };
 
+        // Создаем провайдер сервисов по умолчанию.
         $defaultProvider = new DefaultServicesProvider();
         $defaultProvider->register($this);
     }
