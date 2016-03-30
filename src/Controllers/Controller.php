@@ -3,44 +3,45 @@
  * Author: Demko Igor
  */
 
-namespace App\Controllers;
+namespace Controllers;
 
-
-use App\Helpers\DatabaseEntityMigration;
-use App\Helpers\LoggerEntityMigration;
+use Helpers\DatabaseEntityMigration;
+use Helpers\LoggerEntityMigration;
 use Interop\Container\ContainerInterface;
 use Entity\Entity;
 
-abstract class Controller {
-	/**
-	 * @var ContainerInterface
-	 */
-	protected $ci;
+abstract class Controller
+{
+    /**
+     * @var ContainerInterface
+     */
+    protected $ci;
 
-	/**
-	 * @var Entity
-	 */
-	protected $entity;
+    /**
+     * @var Entity
+     */
+    protected $entity;
 
-	public function __construct(ContainerInterface $ci) {
-		$this->ci = $ci;
+    public function __construct(ContainerInterface $ci)
+    {
+        $this->ci = $ci;
 
-		$settings = [
-			'settings' => [
-				'debug' => $this->ci->get('settings')['displayErrorDetails'], // Set to false in production mode
-			],
+        $settings = [
+            'settings' => [
+                'debug' => $this->ci->get('settings')['displayErrorDetails'], // Set to false in production mode
+            ],
 
-			// Default services
+            // Default services
 
-			'connect' => function() {
-				return new DatabaseEntityMigration($this->ci->connect);
-			},
+            'connect' => function () {
+                return new DatabaseEntityMigration($this->ci->connect);
+            },
 
-			'logger' => function() {
-				return new LoggerEntityMigration($this->ci->logger);
-			}
-		];
+            'logger' => function () {
+                return new LoggerEntityMigration($this->ci->logger);
+            }
+        ];
 
-		$this->entity = new Entity($settings);
-	}
+        $this->entity = new Entity($settings);
+    }
 }

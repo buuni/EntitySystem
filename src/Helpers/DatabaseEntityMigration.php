@@ -3,8 +3,7 @@
  * Author: Demko Igor
  */
 
-namespace App\Helpers;
-
+namespace Helpers;
 
 use \Entity\Interfaces\DatabaseInterface;
 use \Slim\PDO\Database;
@@ -14,35 +13,41 @@ use \Slim\PDO\Database;
  * Класс миграции для менеджера сущностей.
  * @package Helpers
  */
-class DatabaseEntityMigration implements DatabaseInterface {
+class DatabaseEntityMigration implements DatabaseInterface
+{
 
-	/**
-	 * @var Database
-	 */
-	protected $driver;
+    /**
+     * @var Database
+     */
+    protected $driver;
 
-	public function __construct(Database $database) {
-		$this->driver = $database;
-	}
+    public function __construct(Database $database)
+    {
+        $this->driver = $database;
+    }
 
-	public function select($columns = ['*']) {
-		$this->driver->select($columns);
-	}
+    public function select($columns = ['*'])
+    {
+        $this->driver->select($columns);
+    }
 
-	public function insert($columns = []) {
-		$this->driver->insert($columns);
-	}
+    public function insert($columns = [])
+    {
+        $this->driver->insert($columns);
+    }
 
-	public function update($pairs = []) {
-		$this->driver->update($pairs);
-	}
+    public function update($pairs = [])
+    {
+        $this->driver->update($pairs);
+    }
 
-	public function delete($table = null) {
-		$this->driver->delete($table);
-	}
+    public function delete($table = null)
+    {
+        $this->driver->delete($table);
+    }
 
-	public function query($sql = null) {
-		$this->driver->query($sql);
-	}
-
+    public function query($sql = null)
+    {
+        $this->driver->query($sql);
+    }
 }

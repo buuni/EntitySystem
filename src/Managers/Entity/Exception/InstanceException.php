@@ -5,7 +5,6 @@
 
 namespace Entity\Exception;
 
-
-class InstanceException extends \LogicException {
-
+class InstanceException extends \LogicException
+{
 }
