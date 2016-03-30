@@ -4,5 +4,5 @@
  */
 
 $app->group('/entity', function() {
-	$this->get('/add-dictionary', 'Controllers\EntityManager:addDictionary');
+	$this->get('/add-dictionary', 'App\Controllers\EntityManager:addDictionary');
 });

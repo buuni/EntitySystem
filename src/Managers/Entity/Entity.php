@@ -5,7 +5,6 @@
 
 namespace Entity;
 
-
 use Interop\Container\ContainerInterface;
 
 class Entity {

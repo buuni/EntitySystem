@@ -3,14 +3,14 @@
  * Author: Demko Igor
  */
 
-spl_autoload_register(function($class) {
+/*spl_autoload_register(function($class) {
 	// Для того, чтобы использовать красивые неймспейсы. Вместо src/Controllers будет Controllers
 	$patterns = array(
 		'Controllers' => 'src/Controllers',
 		'Helpers' => 'src/Helpers',
-		'Entity' => 'src/Managers/EntityManager',
-		'Entity\Interfaces' => 'src/Managers/EntityManager/Interfaces',
-		'Entity\Exception' => 'src/Managers/EntityManager/Exception',
+		//'Entity' => 'src/Managers/EntityManager',
+		//'Entity\Interfaces' => 'src/Managers/EntityManager/Interfaces',
+		//'Entity\Exception' => 'src/Managers/EntityManager/Exception',
 	);
 
 	$parts = explode('\\', $class);
@@ -34,4 +34,4 @@ spl_autoload_register(function($class) {
 			require_once $path . $variant . '.php';
 		}
 	}
-});
+});*/

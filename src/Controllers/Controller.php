@@ -3,13 +3,13 @@
  * Author: Demko Igor
  */
 
-namespace Controllers;
+namespace App\Controllers;
 
 
-use Helpers\DatabaseEntityMigration;
-use Helpers\LoggerEntityMigration;
+use App\Helpers\DatabaseEntityMigration;
+use App\Helpers\LoggerEntityMigration;
 use Interop\Container\ContainerInterface;
-use \Entity\Entity;
+use Entity\Entity;
 
 abstract class Controller {
 	/**

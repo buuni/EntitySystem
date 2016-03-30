@@ -3,19 +3,24 @@
  * Author: Demko Igor
  */
 
-namespace Helpers;
+namespace App\Helpers;
 
 use \Monolog\Logger;
-use \Entity\Interfaces\LoggerInterface;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
-class LoggerEntityMigration implements LoggerInterface {
+class LoggerEntityMigration implements LoggerInterface, LoggerAwareInterface {
 
 	/**
-	 * @var Logger
+	 * @var LoggerInterface
 	 */
 	protected $logger;
 
 	public function __construct(Logger $logger) {
+		$this->setLogger($logger);
+	}
+
+	public function setLogger(LoggerInterface $logger) {
 		$this->logger = $logger;
 	}
 

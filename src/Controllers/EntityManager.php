@@ -3,8 +3,7 @@
  * Author: Demko Igor
  */
 
-namespace Controllers;
-
+namespace App\Controllers;
 
 class EntityManager extends Controller {
 

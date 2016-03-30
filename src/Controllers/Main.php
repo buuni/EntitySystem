@@ -3,7 +3,7 @@
  * Author: Demko Igor
  */
 
-namespace Controllers;
+namespace App\Controllers;
 
 
 class Main extends Controller {

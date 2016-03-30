@@ -5,11 +5,16 @@
 
 namespace Entity;
 
+use Psr\Log\AbstractLogger;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
+class LoggerCap extends AbstractLogger implements LoggerAwareInterface {
+	protected $logger;
 
-use Entity\Interfaces\LoggerInterface;
-
-class LoggerCap implements LoggerInterface {
+	public function setLogger(LoggerInterface $logger) {
+		$this->logger = $logger;
+	}
 
 	public function emergency($message, array $context = array()) {}
 

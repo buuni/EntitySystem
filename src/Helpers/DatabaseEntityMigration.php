@@ -3,7 +3,7 @@
  * Author: Demko Igor
  */
 
-namespace Helpers;
+namespace App\Helpers;
 
 
 use \Entity\Interfaces\DatabaseInterface;
