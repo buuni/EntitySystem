@@ -107,3 +107,5 @@
 [2016-03-29 20:07:59] application.DEBUG: error connect [] {"uid":"70be86b"}
 [2016-03-29 20:08:00] application.DEBUG: error connect [] {"uid":"425b270"}
 [2016-03-29 20:08:00] application.ERROR: error connect [] {"uid":"425b270"}
+[2016-03-31 22:22:49] application.DEBUG: error connect [] {"uid":"1402e54"}
+[2016-03-31 22:22:49] application.ERROR: error connect [] {"uid":"1402e54"}
