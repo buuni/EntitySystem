@@ -5,11 +5,20 @@
 
 namespace Entity;
 
+use Entity\Statements\TableStatement;
+use Entity\Wizards\DatabaseWizard;
 use Interop\Container\ContainerInterface;
 
+/**
+ * Class Entity
+ * Выступает в роле фасада.
+ *
+ * @package Entity
+ */
 class Entity
 {
-    protected $di;
+    /** @var ContainerInterface  */
+    protected $ci;
 
     public function __construct($container = [])
     {
@@ -21,37 +30,16 @@ class Entity
             throw new \InvalidArgumentException('Expected a ContainerInterface');
         }
 
-        $this->di = $container;
-
-        // Заполняем коллекции с таблицами и столбцами.
-        $this->defaultFillCollections();
+        $this->ci = $container;
     }
 
-    public function createTable($tableName, $fields)
-    {
-        $fields[$tableName . '_unique_id'] = function ($value) {
-            return $value;
-        };
-
-
-        $sql = '';
+    public function prepareTable($name) {
+        return new TableStatement($this->ci, $name);
     }
 
-    protected function defaultFillCollections()
-    {
-        $connect = $this->di->get('connect');
-        /** @var Collection $tables */
-        $tables = $this->di->get('tables');
-
-        $tablesInDB = $connect->query("SHOW TABLES");
-
-        foreach ($tablesInDB as $table) {
-            foreach ($table as $name) {
-                $tables[] = new Table($name);
-            }
-        }
-
-        var_dump($tables);
-        die;
+    public function executeDictionary(TableStatement $dictionary) {
+        /** @var DatabaseWizard $wDatabase */
+        $wDatabase = $this->ci->get('DatabaseWizard');
+        $wDatabase->createTable($dictionary);
     }
 }

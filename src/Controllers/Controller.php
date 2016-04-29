@@ -5,6 +5,8 @@
 
 namespace Controllers;
 
+use Entity\Statements\ColumnType;
+use Entity\Statements\TablePropertyStatement;
 use Helpers\DatabaseEntityMigration;
 use Helpers\LoggerEntityMigration;
 use Interop\Container\ContainerInterface;
@@ -26,22 +28,51 @@ abstract class Controller
     {
         $this->ci = $ci;
 
-        $settings = [
-            'settings' => [
-                'debug' => $this->ci->get('settings')['displayErrorDetails'], // Set to false in production mode
-            ],
+        try {
+            $settings = [
+                'settings' => [
+                    // Настройки системы
+                    'system' => [
+                        'debug' => true,
+                        'cache' => true
+                    ],
 
-            // Default services
+                    // Настройки таблиц
+                    'tables' => [
+                        'prefix' => 'ent_'
+                    ],
 
-            'connect' => function () {
-                return new DatabaseEntityMigration($this->ci->connect);
-            },
+                    // Драйвер для подключения к БД
+                    'driver' => [
+                        'PDO' => [
+                            'type' => 'mysql',
+                            'host' => '127.0.0.1',
+                            'database' => 'entity',
+                            'user' => 'root',
+                            'password' => '',
+                            'charset' => 'utf8'
+                        ]
+                    ]
+                ]
+            ];
 
-            'logger' => function () {
-                return new LoggerEntityMigration($this->ci->logger);
-            }
-        ];
+            $this->entity = new Entity($settings);
 
-        $this->entity = new Entity($settings);
+            $dict = $this->entity->prepareTable('user_groups');
+            $dict->setAlias('Группы пользователй');
+            $dict
+                ->definition('id', 'integer', 11, 'Индекс группы')
+                ->definition('name', 'varchar', 255, 'Наименование группы пользователей')
+//                ->definition('date', 'datetime', false, 'Дата создания группы')
+                ->autoIncrement('id')
+                ->setPrimaryKey('id');
+
+
+            $this->entity->executeDictionary($dict);
+
+        } catch (\Exception $e) {
+            $ci->logger->error($e->getMessage());
+            var_dump($e->getMessage());
+        }
     }
 }

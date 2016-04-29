@@ -109,3 +109,21 @@
 [2016-03-29 20:08:00] application.ERROR: error connect [] {"uid":"425b270"}
 [2016-03-31 22:22:49] application.DEBUG: error connect [] {"uid":"1402e54"}
 [2016-03-31 22:22:49] application.ERROR: error connect [] {"uid":"1402e54"}
+[2016-04-11 21:16:23] application.INFO: Column "id1" is not exists [] {"uid":"75b4947"}
+[2016-04-11 23:00:24] application.INFO: Identifier "SchemaWizard" is not defined. [] {"uid":"2b767c2"}
+[2016-04-11 23:00:25] application.INFO: Identifier "SchemaWizard" is not defined. [] {"uid":"7460b69"}
+[2016-04-21 14:18:46] application.ERROR: Not defined object database connection in $settings["driver"] [] {"uid":"a422e88"}
+[2016-04-21 14:59:16] application.ERROR: Identifier "DatabaseWizard" is not defined. [] {"uid":"aa390cc"}
+[2016-04-21 15:16:47] application.ERROR: SQLSTATE[HY000]: General error: user-supplied statement class must be derived from PDOStatement [] {"uid":"76ee8e4"}
+[2016-04-21 15:21:36] application.ERROR: SQLSTATE[HY000]: General error: user-supplied statement class must be derived from PDOStatement [] {"uid":"0ecca2f"}
+[2016-04-21 15:22:07] application.ERROR: SQLSTATE[HY000]: General error: user-supplied statement class cannot have a public constructor [] {"uid":"6b8b5d6"}
+[2016-04-21 15:22:08] application.ERROR: SQLSTATE[HY000]: General error: user-supplied statement class cannot have a public constructor [] {"uid":"674ddbf"}
+[2016-04-21 15:22:20] application.ERROR: SQLSTATE[HY000]: General error: failed to instantiate user-supplied statement class [] {"uid":"4f50ebb"}
+[2016-04-21 15:22:26] application.ERROR: SQLSTATE[HY000]: General error: failed to instantiate user-supplied statement class [] {"uid":"45c4779"}
+[2016-04-22 20:18:09] application.ERROR: Identifier "SqlWizard" is not defined. [] {"uid":"51d33ed"}
+[2016-04-22 20:18:14] application.ERROR: Identifier "SqlWizard" is not defined. [] {"uid":"3cbea5f"}
+[2016-04-27 10:10:53] application.ERROR: Identifier "SqlWizard" is not defined. [] {"uid":"53c694b"}
+[2016-04-28 19:26:12] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(0) , )' at line 3 [] {"uid":"4ecc9d5"}
+[2016-04-29 00:03:48] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(0) , )' at line 3 [] {"uid":"f17bc60"}
+[2016-04-29 00:26:27] application.ERROR: SQLSTATE[HY000]: General error: 2053  [] {"uid":"4bad122"}
+[2016-04-29 00:39:13] application.ERROR: Table user_groups is exists [] {"uid":"58895d8"}

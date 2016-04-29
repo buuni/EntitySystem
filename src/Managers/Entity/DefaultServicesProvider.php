@@ -6,7 +6,10 @@
 namespace Entity;
 
 use Entity\Interfaces\LoggerInterface;
-use Entity\Wizards\SQLWizard;
+use Entity\Wizards\DatabaseWizard;
+use Entity\Wizards\SchemaWizard;
+use Entity\Wizards\SqlWizard;
+use Entity\Wizards\TablesWizard;
 use Pimple\ServiceProviderInterface;
 use Pimple\Container as PimpleContainer;
 
@@ -16,21 +19,29 @@ class DefaultServicesProvider implements ServiceProviderInterface
     public function register(PimpleContainer $container)
     {
         // Если соеденение с базой не было переданно заранее в настройках, то выбросится исключение
-        if (!isset($container['connect'])) {
-            throw new \InvalidArgumentException('Not defined object database connection in $settings["connect"]');
+        if (isset($container['settings']['driver'])) {
+            $container['DatabaseWizard'] = function($container) {
+                return new DatabaseWizard($container);
+            };
+        } else {
+            throw new \InvalidArgumentException('Not defined object database connection in $settings["driver"]');
         }
 
-        // Сервис протоколирования по-умолчанию.
-        if (!isset($container['logger'])) {
-            $container['logger'] = function ($container) {
-                return new LoggerCap();
+        if(!isset($container['TablesWizard'])) {
+            $container['TablesWizard'] = function($container) {
+                return new TablesWizard($container);
             };
         }
 
-        // Сервис для доступа к коллекции таблиц.
-        if (!isset($container['SQLWizard'])) {
-            $container['tablesWizard'] = function ($container) {
-                return new SQLWizard();
+        if(!isset($container['SqlWizard'])) {
+            $container['SqlWizard'] = function($container) {
+                return new SqlWizard($container);
+            };
+        }
+
+        if(!isset($container['SchemaWizard'])) {
+            $container['SchemaWizard'] = function($container) {
+                return new SchemaWizard($container);
             };
         }
     }

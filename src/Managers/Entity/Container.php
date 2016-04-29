@@ -19,8 +19,14 @@ class Container extends PimpleContainer implements ContainerInterface
      * @var array
      */
     private $defaultSettings = [
-        'debug' => false,
-        'tablePrefix' => '',
+        'system' => [
+            'debug' => true,
+            'cache' => true,
+        ],
+
+        'tables' => [
+            'prefix' => 'std_'
+        ]
     ];
 
     /**

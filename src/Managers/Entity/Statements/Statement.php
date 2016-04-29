@@ -3,17 +3,17 @@
  * Author: Demko Igor
  */
 
-namespace Entity\Wizards;
+namespace Entity\Statements;
 
 
 use Entity\Container;
 
-abstract class Wizard {
-
+abstract class Statement {
 	/** @var Container */
 	protected $ci;
 
 	public function __construct(Container $ci) {
 		$this->ci = $ci;
 	}
+
 }
