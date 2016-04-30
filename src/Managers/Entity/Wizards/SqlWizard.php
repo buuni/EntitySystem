@@ -30,13 +30,28 @@ class SqlWizard extends Wizard {
 		$sql = sprintf(
 			'CREATE TABLE IF NOT EXISTS %s (' .
 				'%s'.
-			' PRIMARY KEY (%s))'
-			, $name, $columnSql, $keys['primary']->getName());
+			' PRIMARY KEY (%s)' .
+			") COLLATE = '%s'\n" .
+			'ENGINE=%s'
+			, $name, $columnSql, $keys['primary']->getName(), $this->ci->settings['tables']['charset'], $this->ci->settings['tables']['engine']);
 
-//		var_dump($sql);die;
-		$this->ci->get('SchemaWizard');
-		die;
+//var_dump($sql);die;
 		return $sql;
 	}
+
+	public function alterTable($name, $columns, $keys = []) {
+
+	}
+
+
+	public function alterNewColumnTable($table, Column $column) {
+		$sql = '';
+
+		$sql = sprintf('ALTER TABLE `%s` ADD COLUMN `%s` %s(%s)', $table, $column->getName(), $column->getType(), $column->getLength());
+//		$sql = sprintf('A')
+//		var_dump($sql);die;
+		return $sql;
+	}
+
 
 }

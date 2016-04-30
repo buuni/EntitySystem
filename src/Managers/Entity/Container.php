@@ -25,7 +25,9 @@ class Container extends PimpleContainer implements ContainerInterface
         ],
 
         'tables' => [
-            'prefix' => 'std_'
+            'prefix' => 'std_',
+            'engine' => 'InnoDB',
+            'charset' => 'utf8_general_ci'
         ]
     ];
 

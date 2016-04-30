@@ -7,42 +7,73 @@ namespace Entity\Wizards;
 
 
 use Entity\Container;
+use Entity\Statements\TableStatement;
 
-class TablesWizard extends Wizard {
+class TablesWizard extends AbstractTablesTools {
 	/** @var DatabaseWizard */
-	protected $db;
+	protected $wBase;
 
-	protected $prefix;
+    /** @var SchemaWizard */
+    protected $wSchema;
+
+    protected $repositoryTables = [];
 
 	public function __construct(Container $ci) {
 		parent::__construct($ci);
-		$this->db = $this->ci->get('DatabaseWizard');
-		$this->prefix = $this->ci->get('settings')['tables']['prefix'];
+		$this->wBase = $ci->get('DatabaseWizard');
+        $this->wSchema = $ci->get('SchemaWizard');
 	}
 
-	/**
-	 * true - таблица существует, false - таблица не существует
-	 * @param $name
-	 * @return bool|null
-	 */
-	public function tableExists($name) {
+    public function getTable($name) {
+        if(isset($this->getAllRepositoryTables()[$name])) {
+            return $this->getAllRepositoryTables()[$name];
+        }
+
+        return null;
+    }
+
+    public function getAllTables() {
+        return $this->getAllRepositoryTables();
+    }
+
+    public function addTable(TableStatement $statement) {
+        if(!$this->tableExists($statement->getName())) {
+            $this->wBase->createTable($statement);
+            $this->wSchema->addTable($statement);
+        } else {
+            $this->editTable($statement);
+        }
+    }
+
+    public function editTable(TableStatement $statement) {
+        if($this->tableExists($statement->getName())) {
+            $this->wBase->alterTable($statement);
+            $this->wSchema->editTable($statement);
+        } else {
+            $this->addTable($statement);
+        }
+    }
+
+    public function tableExists($name) {
 		$tables = $this->getAllTables();
 		return array_search($this->tableName($name), $tables) === false ? false : true;
 	}
 
-	public function getAllTables() {
-		$tables = [];
-		$tablesStm = $this->db->query('SHOW TABLES')[0];
+    protected function updateRepositoryTables() {
+        $tablesStm = $this->wBase->query('SHOW TABLES');
+        $this->repositoryTables = [];
 
-		foreach($tablesStm as $table) {
-			$tables[] = $table;
-		}
+        foreach($tablesStm as $table) {
+            $this->repositoryTables[] = $table['Tables_in_entity'];
+        }
+    }
 
-		return $tables;
-	}
+    protected function getAllRepositoryTables() {
+        if(empty($this->repositoryTables)) {
+            $this->updateRepositoryTables();
+        }
 
-	public function tableName($name) {
-		return $this->prefix . $name;
-	}
+        return $this->repositoryTables;
+    }
 
 }

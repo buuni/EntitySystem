@@ -9,6 +9,7 @@ namespace Entity\Statements;
 use Entity\Collection;
 use Entity\Container;
 use Entity\Tables\Column;
+use Entity\Wizards\SchemaWizard;
 use Entity\Wizards\TablesWizard;
 
 class TableStatement extends Statement {
@@ -23,19 +24,22 @@ class TableStatement extends Statement {
 	/** @var TablesWizard */
 	protected $wTables;
 
+	/** @var  SchemaWizard */
+	protected $wSchema;
+
 	protected $primary = null;
 
 	public function __construct(Container $ci, $name) {
 		parent::__construct($ci);
 		$this->columns = new Collection();
 		$this->wTables = $ci->get('TablesWizard');
+		$this->wSchema = $ci->get('SchemaWizard');
 
 		$this->setName($name);
 	}
 
 	public function setName($name) {
-		if($this->wTables->tableExists($name)) throw new \LogicException(sprintf('Table %s is exists', $name));
-		$this->name = $this->wTables->tableName($name);
+		$this->name = $name;
 	}
 
 	public function setAlias($alias) {

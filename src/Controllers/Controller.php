@@ -39,7 +39,9 @@ abstract class Controller
 
                     // Настройки таблиц
                     'tables' => [
-                        'prefix' => 'ent_'
+                        'prefix' => 'ent_',
+                        'engine' => 'InnoDB',
+                        'charset' => 'utf8_general_ci'
                     ],
 
                     // Драйвер для подключения к БД
@@ -61,10 +63,11 @@ abstract class Controller
             $dict = $this->entity->prepareTable('user_groups');
             $dict->setAlias('Группы пользователй');
             $dict
-                ->definition('id', 'integer', 11, 'Индекс группы')
-                ->definition('name', 'varchar', 255, 'Наименование группы пользователей')
+                ->definition('id', 'integer1', 11, 'Индекс группы')
+                ->definition('name23', 'varchar', 255, 'Наименование группы пользователей')
+                ->definition('test_field', 'varchar', 250, 'Наименование группы пользователей')
 //                ->definition('date', 'datetime', false, 'Дата создания группы')
-                ->autoIncrement('id')
+                ->autoIncrement('name23')
                 ->setPrimaryKey('id');
 
 

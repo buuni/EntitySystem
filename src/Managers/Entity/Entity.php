@@ -6,8 +6,10 @@
 namespace Entity;
 
 use Entity\Statements\TableStatement;
-use Entity\Wizards\DatabaseWizard;
+use Entity\Wizards\TablesWizard;
 use Interop\Container\ContainerInterface;
+
+require_once __DIR__ . '/helpers.php';
 
 /**
  * Class Entity
@@ -31,6 +33,7 @@ class Entity
         }
 
         $this->ci = $container;
+        $container->get('SchemaWizard');
     }
 
     public function prepareTable($name) {
@@ -38,8 +41,8 @@ class Entity
     }
 
     public function executeDictionary(TableStatement $dictionary) {
-        /** @var DatabaseWizard $wDatabase */
-        $wDatabase = $this->ci->get('DatabaseWizard');
-        $wDatabase->createTable($dictionary);
+        /** @var TablesWizard $wTable */
+        $wTable = $this->ci->get('TablesWizard');
+        $wTable->addTable($dictionary);
     }
 }

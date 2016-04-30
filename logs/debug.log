@@ -127,3 +127,36 @@
 [2016-04-29 00:03:48] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(0) , )' at line 3 [] {"uid":"f17bc60"}
 [2016-04-29 00:26:27] application.ERROR: SQLSTATE[HY000]: General error: 2053  [] {"uid":"4bad122"}
 [2016-04-29 00:39:13] application.ERROR: Table user_groups is exists [] {"uid":"58895d8"}
+[2016-04-29 14:02:06] application.ERROR: Table user_groups is exists [] {"uid":"6f8ff28"}
+[2016-04-29 14:15:32] application.ERROR: Table user_groups is exists [] {"uid":"167ae08"}
+[2016-04-29 14:30:55] application.ERROR: Table user_groups is exists [] {"uid":"627e8f1"}
+[2016-04-29 15:07:54] application.ERROR: Table user_groups is exists [] {"uid":"fe8cad4"}
+[2016-04-29 15:07:58] application.ERROR: Table user_groups is exists [] {"uid":"56bffa5"}
+[2016-04-29 16:23:14] application.ERROR: Table user_groups is exists [] {"uid":"e79e022"}
+[2016-04-29 16:23:30] application.ERROR: Table user_groups is exists [] {"uid":"3c91fe4"}
+[2016-04-29 16:23:45] application.ERROR: Table user_groups is exists [] {"uid":"e3f2945"}
+[2016-04-29 16:24:09] application.ERROR: Table user_groups is exists [] {"uid":"e497247"}
+[2016-04-29 16:29:06] application.ERROR: Table user_groups is exists [] {"uid":"0572ea9"}
+[2016-04-29 16:29:22] application.ERROR: Table user_groups is exists [] {"uid":"eebf752"}
+[2016-04-29 16:29:32] application.ERROR: Table user_groups is exists [] {"uid":"b06241e"}
+[2016-04-29 16:29:32] application.ERROR: Table user_groups is exists [] {"uid":"b280672"}
+[2016-04-29 16:29:36] application.ERROR: Table user_groups is exists [] {"uid":"5675517"}
+[2016-04-29 16:29:36] application.ERROR: Table user_groups is exists [] {"uid":"b44508b"}
+[2016-04-29 16:29:36] application.ERROR: Table user_groups is exists [] {"uid":"2a90d70"}
+[2016-04-29 16:29:36] application.ERROR: Table user_groups is exists [] {"uid":"b0e135c"}
+[2016-04-29 17:00:02] application.ERROR: Table user_groups is exists [] {"uid":"930ab08"}
+[2016-04-29 17:00:03] application.ERROR: Table user_groups is exists [] {"uid":"fdec528"}
+[2016-04-29 17:09:08] application.ERROR: Table user_groups is exists [] {"uid":"3eee427"}
+[2016-04-29 17:09:09] application.ERROR: Table user_groups is exists [] {"uid":"8e972a8"}
+[2016-04-29 17:09:10] application.ERROR: Table user_groups is exists [] {"uid":"3a152ff"}
+[2016-04-29 17:09:10] application.ERROR: Table user_groups is exists [] {"uid":"d11bde9"}
+[2016-04-29 17:42:44] application.ERROR: Table user_groups is exists [] {"uid":"bfce972"}
+[2016-04-29 20:14:19] application.ERROR: Identifier "SchemeWizard" is not defined. [] {"uid":"ce41a4e"}
+[2016-04-29 20:14:42] application.ERROR: Identifier "SchemeWizard" is not defined. [] {"uid":"074b4fc"}
+[2016-04-30 02:20:40] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"7cde61b"}
+[2016-04-30 02:20:51] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"689825e"}
+[2016-04-30 02:21:17] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"119674d"}
+[2016-04-30 02:23:00] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"4166af2"}
+[2016-04-30 02:23:32] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"0e068bc"}
+[2016-04-30 02:23:47] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"4aa0567"}
+[2016-04-30 02:29:51] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"679d284"}

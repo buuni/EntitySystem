@@ -27,7 +27,8 @@ class Column {
 		$this->name = $name;
 		$this->type = $type;
 		$this->length = $length;
-		$this->options += $options;
+		$options = $options + $this->options;
+		$this->options = $options;
 	}
 
 	public function setPrimaryKey($value) {
