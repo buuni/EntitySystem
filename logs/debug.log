@@ -160,3 +160,16 @@
 [2016-04-30 02:23:32] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"0e068bc"}
 [2016-04-30 02:23:47] application.ERROR: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '0' at line 1 [] {"uid":"4aa0567"}
 [2016-04-30 02:29:51] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"679d284"}
+[2016-05-02 13:12:52] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"a381e4d"}
+[2016-05-03 00:01:01] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"f0657ae"}
+[2016-05-03 00:13:30] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"a465773"}
+[2016-05-03 00:13:31] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"bc53a77"}
+[2016-05-03 00:19:33] application.ERROR: SQLSTATE[42S21]: Column already exists: 1060 Duplicate column name 'name23' [] {"uid":"dd46395"}
+[2016-05-04 03:01:34] application.ERROR: Identifier "TypessWizard" is not defined. [] {"uid":"8a714c9"}
+[2016-05-04 03:01:38] application.ERROR: Identifier "TypessWizard" is not defined. [] {"uid":"9d9a615"}
+[2016-05-04 03:02:32] application.ERROR: Identifier "SchemaWizard" is not defined. [] {"uid":"37f8af8"}
+[2016-05-04 03:02:44] application.ERROR: Identifier "SchemaWizard" is not defined. [] {"uid":"a911e0e"}
+[2016-05-04 04:36:37] application.ERROR: Identifier "database" is not defined. [] {"uid":"be1d0a7"}
+[2016-05-04 04:36:41] application.ERROR: Identifier "database" is not defined. [] {"uid":"a0a5880"}
+[2016-05-04 04:36:42] application.ERROR: Identifier "database" is not defined. [] {"uid":"78ac59f"}
+[2016-05-04 04:37:22] application.ERROR: Identifier "database" is not defined. [] {"uid":"04e4a86"}

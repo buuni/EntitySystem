@@ -5,11 +5,12 @@
 
 namespace Entity;
 
-use Entity\Statements\TableStatement;
-use Entity\Wizards\TablesWizard;
+use Entity\Decorators\TableStatementDecorator;
+use Entity\Interfaces\TableInterface;
+use Entity\Tables\SchemaTable;
+use Entity\Tables\Table;
+use Entity\Wizards\SchemaWizard;
 use Interop\Container\ContainerInterface;
-
-require_once __DIR__ . '/helpers.php';
 
 /**
  * Class Entity
@@ -31,18 +32,20 @@ class Entity
         if (!$container instanceof ContainerInterface) {
             throw new \InvalidArgumentException('Expected a ContainerInterface');
         }
-
         $this->ci = $container;
-        $container->get('SchemaWizard');
     }
 
+    /**
+     * @param $name
+     * @return TableStatementDecorator
+     */
     public function prepareTable($name) {
-        return new TableStatement($this->ci, $name);
+        return new TableStatementDecorator(new Table($this->ci, $name));
     }
 
-    public function executeDictionary(TableStatement $dictionary) {
-        /** @var TablesWizard $wTable */
-        $wTable = $this->ci->get('TablesWizard');
-        $wTable->addTable($dictionary);
+    public function executeDictionary(TableInterface $dictionary) {
+        /** @var SchemaWizard $wSchema */
+        $wSchema = $this->ci->get('SchemaWizard');
+        $wSchema->addTable($dictionary);
     }
 }

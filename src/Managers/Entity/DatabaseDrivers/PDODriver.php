@@ -12,8 +12,15 @@ class PDODriver extends DatabaseDriver {
 	/** @var \PDO */
 	protected $connect;
 
+	/** @var  Container */
+	protected $ci;
+
 	public function __construct(Container $ci) {
+		$this->ci = $ci;
+
 		$data = $ci['settings']['driver']['PDO'];
+		$this->database = $data['database'];
+
 		$dsn = 'mysql:host=' . $data['host'] . ';dbname=' . $data['database'] . ';charset=' . $data['charset'];
 
 		$options = array(
@@ -28,6 +35,10 @@ class PDODriver extends DatabaseDriver {
 
 	public function __call($name, $arguments) {
 		return call_user_func_array([$this->connect, $name], $arguments);
+	}
+
+	public function getDBName() {
+		return $this->database;
 	}
 
 }

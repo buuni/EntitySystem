@@ -60,14 +60,14 @@ abstract class Controller
 
             $this->entity = new Entity($settings);
 
-            $dict = $this->entity->prepareTable('user_groups');
-            $dict->setAlias('Группы пользователй');
+            $dict = $this->entity->prepareTable('user_group2s');
             $dict
-                ->definition('id', 'integer1', 11, 'Индекс группы')
-                ->definition('name23', 'varchar', 255, 'Наименование группы пользователей')
-                ->definition('test_field', 'varchar', 250, 'Наименование группы пользователей')
-//                ->definition('date', 'datetime', false, 'Дата создания группы')
-                ->autoIncrement('name23')
+                ->definition('id', 'integer', 11, ['auto_increment' => true])
+                ->definition('name23', 'varchar', 255, ['default_value' => 'igor'])
+                ->definition('test_field', 'varchar', 250)
+                ->definition('test_field', 'date', null, ['default_value' => 'null update'])
+////                ->definition('date', 'datetime', false, 'Дата создания группы')
+//                ->autoIncrement('name23')
                 ->setPrimaryKey('id');
 
 

@@ -6,86 +6,92 @@
 namespace Entity\Tables;
 
 
+use Entity\Interfaces\TableInterface;
+
 class Column {
 
-	protected $name;
+    /** @var TableInterface */
+    protected $parent;
 
-	protected $type;
+    protected $name;
 
-	protected $length;
+    /** @var callable */
+    protected $type;
 
-	protected $options = [
-		'auto_increment' => false,
-		'comment' => null,
-	];
+    protected $property = [
+        'default_value' => false,
+        'auto_increment' => false,
+        'null' => false,
+    ];
 
-	protected $keys = [
-		'primary' => false,
-	];
+    public function __construct($name, TableInterface $parent) {
+        $this->parent = $parent;
+        $this->name = $name;
+    }
 
-	public function __construct($name, $type, $length, $options = []) {
-		$this->name = $name;
-		$this->type = $type;
-		$this->length = $length;
-		$options = $options + $this->options;
-		$this->options = $options;
-	}
+    /**
+     * Getter property.
+     * @return array
+     */
+    public function getProperty() {
+        return $this->property;
+    }
 
-	public function setPrimaryKey($value) {
-		$this->keys['primary'] = $value;
-	}
-	public function setAutoIncrement($value) {
-		$this->options['auto_increment'] = $value;
-	}
+    /**
+     * Setter property.
+     * @param array $property
+     */
+    public function setProperty($property) {
+        $this->property = array_merge($this->property, $property);
+//        var_dump($this->property);die;
+    }
 
-	/**
-	 * Getter name.
-	 * @return mixed
-	 */
-	public function getName() {
-		return $this->name;
-	}
+    /**
+     * Getter parent.
+     * @return Table
+     */
+    public function getParent() {
+        return $this->parent;
+    }
 
-	/**
-	 * Getter type.
-	 * @return mixed
-	 */
-	public function getType() {
-		return $this->type;
-	}
+    /**
+     * Setter parent.
+     * @param TableInterface $parent
+     */
+    public function setParent(TableInterface $parent) {
+        $this->parent = $parent;
+    }
 
-	/**
-	 * Getter length.
-	 * @return mixed
-	 */
-	public function getLength() {
-		return $this->length;
-	}
+    /**
+     * Getter name.
+     * @return mixed
+     */
+    public function getName() {
+        return $this->name;
+    }
 
-	public function primary() {
-		return $this->keys['primary'];
-	}
+    /**
+     * Setter name.
+     * @param mixed $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
 
-	public function autoIncrement() {
-		return $this->options['auto_increment'];
-	}
+    /**
+     * Getter type.
+     * @return callable
+     */
+    public function getType() {
+        return $this->type;
+    }
 
-	/**
-	 * Getter options.
-	 * @return array
-	 */
-	public function getOptions() {
-		return $this->options;
-	}
-
-	/**
-	 * Getter keys.
-	 * @return array
-	 */
-	public function getKeys() {
-		return $this->keys;
-	}
-
-
+    /**
+     * Setter type.
+     * @param callable $type
+     */
+    public function setType($type) {
+        $this->type = $type;
+    }
 
 }

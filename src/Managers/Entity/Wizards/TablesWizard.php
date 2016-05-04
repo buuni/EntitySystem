@@ -6,74 +6,70 @@
 namespace Entity\Wizards;
 
 
+use Entity\Collection;
 use Entity\Container;
+use Entity\Interfaces\TableInterface;
 use Entity\Statements\TableStatement;
 
 class TablesWizard extends AbstractTablesTools {
 	/** @var DatabaseWizard */
 	protected $wBase;
 
-    /** @var SchemaWizard */
-    protected $wSchema;
+    /** @var Collection */
+    protected $tables;
 
-    protected $repositoryTables = [];
+    /** @var Collection */
+    protected $tablesRepository;
 
 	public function __construct(Container $ci) {
 		parent::__construct($ci);
+
 		$this->wBase = $ci->get('DatabaseWizard');
-        $this->wSchema = $ci->get('SchemaWizard');
+        $this->tables = new Collection();
+        $this->tablesRepository = new Collection();
 	}
 
-    public function getTable($name) {
-        if(isset($this->getAllRepositoryTables()[$name])) {
-            return $this->getAllRepositoryTables()[$name];
+    public function addTable(TableInterface $table) {
+        if($this->getTablesRepository()->has($this->tableName($table->getName()))) {
+            $this->editTable($table);
+        } else {
+            $this->wBase->createTable($table);
         }
+    }
 
-        return null;
+    public function editTable(TableInterface $table) {
+        if(!$this->getTablesRepository()->has($this->tableName($table->getName()))) {
+            $this->addTable($table);
+        } else {
+            $this->wBase->alterTable($table);
+        }
     }
 
     public function getAllTables() {
-        return $this->getAllRepositoryTables();
+        // TODO: Implement getAllTables() method.
     }
 
-    public function addTable(TableStatement $statement) {
-        if(!$this->tableExists($statement->getName())) {
-            $this->wBase->createTable($statement);
-            $this->wSchema->addTable($statement);
-        } else {
-            $this->editTable($statement);
-        }
-    }
-
-    public function editTable(TableStatement $statement) {
-        if($this->tableExists($statement->getName())) {
-            $this->wBase->alterTable($statement);
-            $this->wSchema->editTable($statement);
-        } else {
-            $this->addTable($statement);
-        }
+    public function getTable($name) {
+        // TODO: Implement getTable() method.
     }
 
     public function tableExists($name) {
-		$tables = $this->getAllTables();
-		return array_search($this->tableName($name), $tables) === false ? false : true;
-	}
-
-    protected function updateRepositoryTables() {
-        $tablesStm = $this->wBase->query('SHOW TABLES');
-        $this->repositoryTables = [];
-
-        foreach($tablesStm as $table) {
-            $this->repositoryTables[] = $table['Tables_in_entity'];
-        }
+        // TODO: Implement tableExists() method.
     }
 
-    protected function getAllRepositoryTables() {
-        if(empty($this->repositoryTables)) {
-            $this->updateRepositoryTables();
+    /**
+     * @return Collection
+     */
+    protected function getTablesRepository() {
+        if(empty($this->tablesRepository->all())) {
+            $queryTables = $this->wBase->getAllTables();
+
+            foreach((array)$queryTables as $table) {
+                $this->tablesRepository->set(array_values($table)[0], true);
+            }
         }
 
-        return $this->repositoryTables;
+        return $this->tablesRepository;
     }
 
 }

@@ -7,7 +7,7 @@ namespace Entity\Wizards;
 
 
 use Entity\Container;
-use Entity\Statements\TableStatement;
+use Entity\Interfaces\TableInterface;
 use Entity\Interfaces\TablesTools;
 
 abstract class AbstractTablesTools extends Wizard implements TablesTools {
@@ -15,7 +15,7 @@ abstract class AbstractTablesTools extends Wizard implements TablesTools {
 
     public function __construct(Container $ci) {
         parent::__construct($ci);
-        $this->prefix = $this->ci->get('settings')['tables']['prefix'];
+        $this->prefix = $this->settings['tables']['prefix'];
     }
 
     /**
@@ -29,11 +29,11 @@ abstract class AbstractTablesTools extends Wizard implements TablesTools {
 
     abstract public function getTable($name);
 
-    abstract public function addTable(TableStatement $table);
+    abstract public function addTable(TableInterface $table);
 
-    abstract public function editTable(TableStatement $statement);
+    abstract public function editTable(TableInterface $table);
 
-    public function tableName($name) {
+    final public function tableName($name) {
         return $this->prefix . $name;
     }
 }

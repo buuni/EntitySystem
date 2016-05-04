@@ -6,6 +6,7 @@
 namespace Entity;
 
 use Entity\Interfaces\LoggerInterface;
+use Entity\Wizards\TypesWizard;
 use Entity\Wizards\DatabaseWizard;
 use Entity\Wizards\SchemaWizard;
 use Entity\Wizards\SqlWizard;
@@ -42,6 +43,12 @@ class DefaultServicesProvider implements ServiceProviderInterface
         if(!isset($container['SchemaWizard'])) {
             $container['SchemaWizard'] = function($container) {
                 return new SchemaWizard($container);
+            };
+        }
+
+        if(!isset($container['TypesWizard'])) {
+            $container['TypesWizard'] = function($container) {
+                return new TypesWizard($container);
             };
         }
     }
